@@ -48,11 +48,52 @@ for i in range(0, steps):
 
 print('right')
 for i in range(0, steps):
+    setStep(1,0,0,1)
+    time.sleep(delay)
+    setStep(0,1,0,1)
+    time.sleep(delay)
+    setStep(0,1,1,0)
+    time.sleep(delay)
+    setStep(1,0,1,0)
+    time.sleep(delay)
+
+
+# sketchy motor switch
+
+coil_A_1_pin = 12
+coil_A_2_pin = 16
+coil_B_1_pin = 20
+coil_B_2_pin = 21 # this is the one closest to power on the H-Bridge module
+
+# Set pin states
+
+GPIO.setup(coil_A_1_pin, GPIO.OUT)
+GPIO.setup(coil_A_2_pin, GPIO.OUT)
+GPIO.setup(coil_B_1_pin, GPIO.OUT)
+GPIO.setup(coil_B_2_pin, GPIO.OUT)
+
+
+
+print('up')
+for i in range(0, steps):
+    setStep(1,0,1,0)
+    time.sleep(delay)
     setStep(0,1,1,0)
     time.sleep(delay)
     setStep(0,1,0,1)
     time.sleep(delay)
     setStep(1,0,0,1)
+    time.sleep(delay)
+
+# Reverse previous step sequence to reverse motor direction
+
+print('down')
+for i in range(0, steps):
+    setStep(1,0,0,1)
+    time.sleep(delay)
+    setStep(0,1,0,1)
+    time.sleep(delay)
+    setStep(0,1,1,0)
     time.sleep(delay)
     setStep(1,0,1,0)
     time.sleep(delay)
