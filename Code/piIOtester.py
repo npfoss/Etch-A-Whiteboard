@@ -4,7 +4,7 @@ import time
 # Variables
 
 delay = 0.0055
-steps = 200
+steps = 100
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -17,10 +17,10 @@ enable_b = 22
 '''
 # Enable pins for IN1-4 to control step sequence
 
-coil_A_1_pin = 23
-coil_A_2_pin = 24
-coil_B_1_pin = 4
-coil_B_2_pin = 17
+coil_A_1_pin = 26
+coil_A_2_pin = 19
+coil_B_1_pin = 13
+coil_B_2_pin = 6 # this is the one closest to power on the H-Bridge module
 
 # Set pin states
 
@@ -47,24 +47,28 @@ def setStep(w1, w2, w3, w4):
 
 # loop through step sequence based on number of steps
 
+print('clockwise')
 for i in range(0, steps):
     setStep(1,0,1,0)
-    time.sleep(delay)
-    setStep(0,1,1,0)
     time.sleep(delay)
     setStep(0,1,0,1)
     time.sleep(delay)
     setStep(1,0,0,1)
+    time.sleep(delay)
+    setStep(0,1,1,0)
     time.sleep(delay)
 
 # Reverse previous step sequence to reverse motor direction
 
+print('counterclockwise')
 for i in range(0, steps):
-    setStep(1,0,0,1)
+    setStep(0,1,1,0)
     time.sleep(delay)
     setStep(0,1,0,1)
     time.sleep(delay)
-    setStep(0,1,1,0)
+    setStep(1,0,0,1)
     time.sleep(delay)
     setStep(1,0,1,0)
     time.sleep(delay)
+
+print('Program end.')
