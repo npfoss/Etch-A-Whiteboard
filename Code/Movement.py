@@ -22,6 +22,15 @@ def initSteppers():
     for lst in stepperPins:
         for pin in lst:
             GPIO.setup(pin, GPIO.OUT)
+
+    #this again, just in case
+    delay = 0.002
+                   #A1  A2  B1  B2  #B2 is closest to power on the H-Bridge module
+    stepperPins = [[26, 19, 13,  6],
+                    12, 16, 20, 21]]
+        # stepperPins row 0 is horizontal, 1 is vertical
+
+    print('--Initialization complete.')
 #---------------------------------------------------------------------Movement--
 # should be in format [dir, steps,]
 def parseLine(lineList):

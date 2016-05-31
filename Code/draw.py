@@ -10,21 +10,17 @@ import time
 from Movement import initSteppers, parseLine
 
 ###################################START OF PROGRAM#############################
-#------------------------------------------------------------Etch-A-Whiteboard--
-
-#------------------------------------------------------------Etch-A-Whiteboard--
-
-#------------------------------------------------------------Etch-A-Whiteboard--
-
-#======================< GLOBAL STUFFS >=====================Etch-A-Whiteboard==
-
 #===============================< MAIN >========================================
 def main():
-    # DO STUFF HERE
     initSteppers()
-    #loop
-        #if dir is > 7, call penup() or pendown()
 
+    filename = sys.argv[1]
+    print('Reading from file', filename)
+    f = open ( filename )
+
+    line = f.readLine()
+    while(line):
+        parseLine(line.strip().split())
 #------------------------------------------------------------Etch-A-Whiteboard--
 if __name__ == '__main__': main()
 #############################< END OF PROGRAM >#################################
