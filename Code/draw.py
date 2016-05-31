@@ -7,7 +7,7 @@
 import sys
 import RPi.GPIO as GPIO
 import time
-import Movement
+from Movement import initSteppers, parseLine
 
 ###################################START OF PROGRAM#############################
 #------------------------------------------------------------Etch-A-Whiteboard--
