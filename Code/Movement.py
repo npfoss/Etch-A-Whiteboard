@@ -55,14 +55,6 @@ def upright(steps):
     for x in range(steps):
         stepCounterclockwise(1)
         stepCounterclockwise(0)
-    '''
-    p1 = multiprocessing.Process(target=up, args=(steps))
-    p2 = multiprocessing.Process(target=right, args=(steps))
-    p1.start()
-    p2.start()
-    while p1.isAlive() or p2.isAlive():
-        sleep(.1)
-    '''
 #---------------------------------------------------------------------Movement--
 def right(steps):
     for x in range(steps):
@@ -131,3 +123,12 @@ def main():
         #       This is the same format as the instruction file.
         initSteppers()
         parseLine(argv[1:])
+############################# END OF PROGRAM ###################################
+'''
+p1 = multiprocessing.Process(target=up, args=(steps))
+p2 = multiprocessing.Process(target=right, args=(steps))
+p1.start()
+p2.start()
+while p1.isAlive() or p2.isAlive():
+    sleep(.1)
+'''

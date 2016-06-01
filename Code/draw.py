@@ -20,7 +20,9 @@ def main():
 
     line = f.readLine()
     while(line):
+        print(line)
         parseLine(line.strip().split())
+        line = f.readLine()
 #------------------------------------------------------------Etch-A-Whiteboard--
 if __name__ == '__main__': main()
 #############################< END OF PROGRAM >#################################
