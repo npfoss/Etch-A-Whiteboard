@@ -123,7 +123,9 @@ def main():
         #       This is the same format as the instruction file.
         initSteppers()
         parseLine(argv[1:])
-############################# END OF PROGRAM ###################################
+#------------------------------------------------------------Etch-A-Whiteboard--
+if __name__ == '__main__': main()
+#############################< END OF PROGRAM >#################################
 '''
 p1 = multiprocessing.Process(target=up, args=(steps))
 p2 = multiprocessing.Process(target=right, args=(steps))
