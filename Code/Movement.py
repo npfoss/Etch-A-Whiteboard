@@ -27,7 +27,7 @@ def initSteppers():
     delay = 0.002
                    #A1  A2  B1  B2  #B2 is closest to power on the H-Bridge module
     stepperPins = [[26, 19, 13,  6],
-                    12, 16, 20, 21]]
+                   [12, 16, 20, 21]]
         # stepperPins row 0 is horizontal, 1 is vertical
 
     print('--Initialization complete.')
