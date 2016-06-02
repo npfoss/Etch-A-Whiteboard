@@ -54,15 +54,15 @@ def up(steps):
 def upright(steps):
     for x in range(steps):
         stepCounterclockwise(1)
-        stepCounterclockwise(0)
+        stepClockwise(0)
 #---------------------------------------------------------------------Movement--
 def right(steps):
     for x in range(steps):
-        stepCounterclockwise(0)
+        stepClockwise(0)
 #---------------------------------------------------------------------Movement--
 def downright(steps):
     for x in range(steps):
-        stepCounterclockwise(0)
+        stepClockwise(0)
         stepClockwise(1)
 #---------------------------------------------------------------------Movement--
 def down(steps):
@@ -72,15 +72,15 @@ def down(steps):
 def downleft(steps):
     for x in range(steps):
         stepClockwise(1)
-        stepClockwise(0)
+        stepCounterclockwise(0)
 #---------------------------------------------------------------------Movement--
 def left(steps):
     for x in range(steps):
-        stepClockwise(0)
+        stepCounterclockwise(0)
 #---------------------------------------------------------------------Movement--
 def upleft(steps):
     for x in range(steps):
-        stepClockwise(0)
+        stepCounterclockwise(0)
         stepCounterclockwise(1)
 #---------------------------------------------------------------------Movement--
 def penup():
