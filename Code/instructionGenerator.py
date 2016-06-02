@@ -7,9 +7,17 @@
 import sys
 from copy import deepcopy
 
-###################################START OF PROGRAM#############################
+##################################START OF PROGRAM#############################
+#======================< GLOBAL STUFFS >==========================Class Name==
+#BOARD_WIDTH = 
+#BOARD_HEIGHT = 
+WIDTH = 0
+HEIGHT = 0
+pixScale = 5
+DIRECTIONS = [(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1)]
 #-----------------------------------------------------------------Class Name--
 def input(filename):
+    global WIDTH, HEIGHT
     txt = open ( filename ) . read() . split()
 
     txt.pop(0)
@@ -18,9 +26,8 @@ def input(filename):
     HEIGHT = int(txt.pop(0))
     maxRGB = txt.pop(0)
 
-    img = [[1 if txt[(row*WIDTH + col)*3] == '255' else 0 for col in range( WIDTH )] for row in range(HEIGHT)]
+    img = [[1 if int(txt[(row*WIDTH + col)*3]) >= 250 else 0 for col in range( WIDTH )] for row in range(HEIGHT)]
 
-    file.close()
     return img
 #-----------------------------------------------------------------Class Name--
 def outputImage(filename, img):
@@ -30,7 +37,7 @@ def outputImage(filename, img):
         for col in range (WIDTH):
             val = '255' if img[row][col] else '0'
             outfile.write(val + ' ' + val + ' ' + val + ' ')
-    out.close()
+    outfile.close()
 #-----------------------------------------------------------------Class Name--
 def adjacentPixels(img, row, col, exclude = []):
     lst = []
@@ -56,14 +63,16 @@ def followLineAndPrint(img, drawn, row, col, outfile): #erases from original as 
                     break
         if not (dr or dc):
             (dr, dc) = adj[0]
-        outfile.write(str(DIRECTIONS.indexOf((dr,dc))) + ' ' + pixScale + '\n')
-        img[row][col] -= 1
+        outfile.write(str(DIRECTIONS.index((dr,dc))) + ' ' + str(pixScale) + '\n')
+        img[row][col] = 0
         drawn[row][col] = 1
         row += dr
         col += dc
         #prep for next time
         adj = adjacentPixels(img, row, col)
-    return finalRow, finalCol
+    img[row][col] = 0
+    drawn[row][col] = 1
+    return row, col 
 #-----------------------------------------------------------------Class Name--
 def moveWithPenUp(r1, c1, r2, c2, outfile):
     #put pen up
@@ -71,18 +80,10 @@ def moveWithPenUp(r1, c1, r2, c2, outfile):
     #move
     dirx = 2 if c2 > c1 else 6
     diry = 0 if r2 < r1 else 4
-    outfile.write(str(dirx) + ' ' + max(c1-c2,c2-c1) + '\n')
-    outfile.write(str(diry) + ' ' + max(r1-r2,r2-r1) + '\n')
+    outfile.write(str(dirx) + ' ' + str(pixScale * max(c1-c2,c2-c1)) + '\n')
+    outfile.write(str(diry) + ' ' + str(pixScale * max(r1-r2,r2-r1)) + '\n')
     #put pen down
     outfile.write('9 1\n')
-#======================< GLOBAL STUFFS >==========================Class Name==
-#BOARD_WIDTH = 
-#BOARD_HEIGHT = 
-WIDTH = 0
-HEIGHT = 0
-pixScale = 5
-DIRECTIONS = [(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1)]
-
 #===============================< MAIN >========================================
 def main():
     filename = sys.argv[1]
@@ -99,9 +100,10 @@ def main():
     for row in range(WIDTH):
         for col in range(HEIGHT):
             if img[row][col]:
-                moveWithPenUp(r,c,row,col, outfile)
-                r, c = followLineAndPrint(img, drawn, row, col)
-                outputImage(filename[:-4] + str(count) + '.ppm')
+                print('it happened')
+                moveWithPenUp(pr,pc,row,col, outfile)
+                pr, pc = followLineAndPrint(img, drawn, row, col, outfile)
+                outputImage(filename[:-4] + str(count) + '.ppm', drawn)
                 count += 1
 
     outfile.close()
