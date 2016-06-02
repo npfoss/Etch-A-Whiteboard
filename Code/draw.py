@@ -5,14 +5,14 @@
 # |                          TJHSST Robotics Lab                              |
 # +---------------------------------------------------------------------------+
 import sys
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
-from Movement import initSteppers, parseLine
+import Movement
 
 ###################################START OF PROGRAM#############################
 #===============================< MAIN >========================================
 def main():
-    initSteppers()
+    Movement.initSteppers()
 
     filename = sys.argv[1]
     print('Reading from file', filename)
@@ -21,7 +21,7 @@ def main():
     line = f.readLine()
     while(line):
         print(line)
-        parseLine(line.strip().split())
+        Movement.parseLine(line.strip().split())
         line = f.readLine()
 #------------------------------------------------------------Etch-A-Whiteboard--
 if __name__ == '__main__': main()

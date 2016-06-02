@@ -14,6 +14,8 @@ delay = 0.002
 stepperPins = [[26, 19, 13,  6],
                [12, 16, 20, 21]]
     # stepperPins row 0 is horizontal, 1 is vertical
+actuatorPinPurple = 23
+actuatorPinWhite = 24
 #---------------------------------------------------------------------Movement--
 def initSteppers():
     GPIO.setmode(GPIO.BCM)
@@ -22,20 +24,20 @@ def initSteppers():
     for lst in stepperPins:
         for pin in lst:
             GPIO.setup(pin, GPIO.OUT)
-
-    #this again, just in case
-    delay = 0.002
-                   #A1  A2  B1  B2  #B2 is closest to power on the H-Bridge module
-    stepperPins = [[26, 19, 13,  6],
-                   [12, 16, 20, 21]]
-        # stepperPins row 0 is horizontal, 1 is vertical
+    GPIO.setup(actuatorPinPurple, GPIO.OUT)
+    GPIO.setup(actuatorPinWhite, GPIO.OUT)
+    GPIO.output(actuatorPinWhite, 0)
+    GPIO.output(actuatorPinPurple, 0)
 
     print('--Initialization complete.')
 #---------------------------------------------------------------------Movement--
 # should be in format [dir, steps,]
 def parseLine(lineList):
+    print(lineList)
     lineList = [int(lineList[x]) for x in range(len(lineList))]
     if lineList[0] < 8:
+        print('move?')
+        input()
         move(lineList[0], lineList[1])
     else:
         [penup, pendown][lineList[0]-8]()
@@ -84,12 +86,14 @@ def upleft(steps):
         stepCounterclockwise(1)
 #---------------------------------------------------------------------Movement--
 def penup():
-    #todo: actuators
-    return
+    GPIO.output(actuatorPinPurple, 1)
+    time.sleep(5)
+    GPIO.output(actuatorPinPurple, 0)
 #---------------------------------------------------------------------Movement--
 def pendown():
-    #todo: actuators
-    return
+    GPIO.output(actuatorPinWhite, 1)
+    time.sleep(5)
+    GPIO.output(actuatorPinWhite, 0)
 #---------------------------------------------------------------------Movement--
 def stepClockwise(stepper):
     setStep(stepper, 1,0,0,1)
@@ -117,12 +121,13 @@ def move(direction, steps):
 #===============================< MAIN >========================================
 def main():
     # DO STUFF HERE
-    if sys.argv[0] > 1:
+    print('flag1')
+    if len(sys.argv) > 1:
         # NOTE: input should be in the form  int , int  where the first int is
         #       direction, and the second is the number of steps.
         #       This is the same format as the instruction file.
         initSteppers()
-        parseLine(argv[1:])
+        parseLine(sys.argv[1:])
 #------------------------------------------------------------Etch-A-Whiteboard--
 if __name__ == '__main__': main()
 #############################< END OF PROGRAM >#################################
