@@ -13,7 +13,7 @@ from copy import deepcopy
 #BOARD_HEIGHT = 
 WIDTH = 0
 HEIGHT = 0
-pixScale = 5
+pixScale = 50
 DIRECTIONS = [(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1)]
 #-----------------------------------------------------------------Class Name--
 def input(filename):
@@ -97,13 +97,13 @@ def main():
     pc = 0
 
     count = 0
-    for row in range(WIDTH):
-        for col in range(HEIGHT):
+    for row in range(HEIGHT):
+        for col in range(WIDTH):
             if img[row][col]:
                 print('it happened')
                 moveWithPenUp(pr,pc,row,col, outfile)
                 pr, pc = followLineAndPrint(img, drawn, row, col, outfile)
-                outputImage(filename[:-4] + str(count) + '.ppm', drawn)
+                #outputImage(filename[:-4] + str(count) + '.ppm', drawn) #for debugging
                 count += 1
 
     outfile.close()
