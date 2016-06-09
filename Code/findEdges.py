@@ -1,3 +1,10 @@
+# findEdges.py
+#
+# inspired by sample code online, make useful for this project by Nate Foss
+#
+# Robotics Senior Tech Project 2015-16: Etch-A-Whiteboard
+#
+
 import cv2
 import numpy as np
 import sys

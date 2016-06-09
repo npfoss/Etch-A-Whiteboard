@@ -8,14 +8,14 @@ import sys
 from copy import deepcopy
 
 ##################################START OF PROGRAM#############################
-#======================< GLOBAL STUFFS >==========================Class Name==
+#======================< GLOBAL STUFFS >===========Instruction File Generator==
 #BOARD_WIDTH = 
 #BOARD_HEIGHT = 
 WIDTH = 0
 HEIGHT = 0
 pixScale = 50
 DIRECTIONS = [(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1)]
-#-----------------------------------------------------------------Class Name--
+#--------------------------------------------------Instruction File Generator--
 def input(filename):
     global WIDTH, HEIGHT
     txt = open ( filename ) . read() . split()
@@ -29,7 +29,7 @@ def input(filename):
     img = [[1 if int(txt[(row*WIDTH + col)*3]) >= 250 else 0 for col in range( WIDTH )] for row in range(HEIGHT)]
 
     return img
-#-----------------------------------------------------------------Class Name--
+#--------------------------------------------------Instruction File Generator--
 def outputImage(filename, img):
     outfile  = open ( filename , 'w' )
     outfile.write('P3\n' + str(WIDTH) + ' ' + str( HEIGHT ) + '\n255\n')
@@ -38,7 +38,7 @@ def outputImage(filename, img):
             val = '255' if img[row][col] else '0'
             outfile.write(val + ' ' + val + ' ' + val + ' ')
     outfile.close()
-#-----------------------------------------------------------------Class Name--
+#--------------------------------------------------Instruction File Generator--
 def adjacentPixels(img, row, col, exclude = []):
     lst = []
     for (dr, dc) in DIRECTIONS:
@@ -48,7 +48,7 @@ def adjacentPixels(img, row, col, exclude = []):
         if img[nr][nc]:
             lst.append((dr,dc))
     return lst
-#-----------------------------------------------------------------Class Name--
+#--------------------------------------------------Instruction File Generator--
 def followLineAndPrint(img, drawn, row, col, outfile): #erases from original as it goes, and adds to 'drawn'
     #perhaps keep track of last 8 and ignore those (so you can leave some in where there are forks)
     # note: can check if corner with boolean = adder[0] and adder[1]
@@ -73,7 +73,7 @@ def followLineAndPrint(img, drawn, row, col, outfile): #erases from original as 
     img[row][col] = 0
     drawn[row][col] = 1
     return row, col 
-#-----------------------------------------------------------------Class Name--
+#--------------------------------------------------Instruction File Generator--
 def moveWithPenUp(r1, c1, r2, c2, outfile):
     #put pen up
     outfile.write('8 1\n')
@@ -107,7 +107,7 @@ def main():
                 count += 1
 
     outfile.close()
-#-----------------------------------------------------------------Class Name--
+#--------------------------------------------------Instruction File Generator--
 if __name__ == '__main__': from time import clock; START_TIME = clock();  main(); \
                            print('--> Run time =', round(clock() - START_TIME, 2), 'seconds <--');
 #############################< END OF PROGRAM >#################################
