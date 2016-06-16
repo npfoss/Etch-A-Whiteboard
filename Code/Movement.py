@@ -87,12 +87,12 @@ def upleft(steps):
 #---------------------------------------------------------------------Movement--
 def penup():
     GPIO.output(actuatorPinPurple, 1)
-    time.sleep(5)
+    time.sleep(3)
     GPIO.output(actuatorPinPurple, 0)
 #---------------------------------------------------------------------Movement--
 def pendown():
     GPIO.output(actuatorPinWhite, 1)
-    time.sleep(5)
+    time.sleep(3)
     GPIO.output(actuatorPinWhite, 0)
 #---------------------------------------------------------------------Movement--
 def stepClockwise(stepper):
