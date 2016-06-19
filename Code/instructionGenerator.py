@@ -13,7 +13,7 @@ from copy import deepcopy
 #BOARD_HEIGHT = 
 WIDTH = 0
 HEIGHT = 0
-pixScale = 50
+pixScale = 15
 DIRECTIONS = [(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1)]
 #--------------------------------------------------Instruction File Generator--
 def input(filename):
