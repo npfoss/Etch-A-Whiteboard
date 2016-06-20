@@ -9,11 +9,10 @@ from copy import deepcopy
 
 ##################################START OF PROGRAM#############################
 #======================< GLOBAL STUFFS >===========Instruction File Generator==
-#BOARD_WIDTH = 
-#BOARD_HEIGHT = 
 WIDTH = 0
 HEIGHT = 0
-pixScale = 15
+idealTotalVertSteps = 15555
+pixScale = 20 # NOTE: will have to change based on image size
 DIRECTIONS = [(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1)]
 #--------------------------------------------------Instruction File Generator--
 def input(filename):
@@ -88,7 +87,7 @@ def moveWithPenUp(r1, c1, r2, c2, outfile):
 def main():
     filename = sys.argv[1]
     img = input(filename)
-    #pixScale = min(BOARD_WIDTH/ WIDTH, BOARD_HEIGHT / HEIGHT)
+    pixScale = idealTotalVertSteps // HEIGHT
     outfile = open(filename[:-4] + '.eaw', 'w')
     drawn = [[0 for col in range(WIDTH)] for row in range(HEIGHT)]
 
