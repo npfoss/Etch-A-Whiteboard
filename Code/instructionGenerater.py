@@ -122,7 +122,7 @@ def main():
                 moveWithPenUp(pr,pc,row,col, outfile)
                 pr, pc = followLineAndPrint(img, drawn, row, col, outfile)
                 #outputImage(filename[:-4] + str(count) + '.ppm', drawn) #for debugging
-                break;
+    '''            break;
         if pr != 0 or pc != 0:
             break;
     opr = 0
@@ -135,7 +135,9 @@ def main():
                                 pr, pc = followLineAndPrint(img, drawn, pr+dr, pc+dc, outfile)
                                 break
         opr = pr
-        opc = pc
+        opc = pc'''
+
+    #outputImage("debug.ppm",drawn)
 
     outfile.close()
 #--------------------------------------------------Instruction File Generator--
