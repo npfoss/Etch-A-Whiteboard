@@ -19,10 +19,14 @@ def main():
     f = open ( filename )
 
     line = f.readLine()
+    count = 1
+    startTime = clock()
     while(line):
         print(line)
         Movement.parseLine(line.strip().split())
+        print('lines complete: %d\telapsed time: %.1f mins'%(count, (clock() -startTime)/60)
         line = f.readLine()
+        count += 1
 #------------------------------------------------------------Etch-A-Whiteboard--
 if __name__ == '__main__': main()
 #############################< END OF PROGRAM >#################################
