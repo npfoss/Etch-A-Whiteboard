@@ -1,6 +1,5 @@
 # Etch-A-Whiteboard
-###Thomas Jefferson High School for Science and Technology Robotics Senior Tech Lab
-Designed, built, coded, tested, and debugged by Nate Foss and Alex Hoganson.
+Designed, built, coded, tested, and debugged by Nate Foss and Alex Hoganson in the Thomas Jefferson High School for Science and Technology Robotics Senior Tech Lab.
 
 ## Documentation
 [Hackster.io writeup](https://www.hackster.io/wait-for-it/etch-a-whiteboard-automated-precision-drawing-b8f5b8)
